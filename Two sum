@@ -1,0 +1,14 @@
+#https://leetcode.com/problems/two-sum/
+
+
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        d={}
+        
+        for i,val in enumerate(nums):
+            e=target-val
+            if e in d and d[e]!=i:
+                ans=[d[e],i]
+            d[val]=i
+        return ans
+        
