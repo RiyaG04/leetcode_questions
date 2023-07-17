@@ -1,0 +1,33 @@
+#https://leetcode.com/problems/search-in-rotated-sorted-array/
+
+
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        def pivot(nums):
+            s=0
+            e=len(nums)-1
+            while s<e:
+                mid=(s+e)//2
+                if nums[mid]>=nums[0]:
+                    s=mid+1
+                else:
+                    e=mid
+            return s
+        def binarysearch(nums,s,e,target):
+            while s<=e:
+                mid=(s+e)//2
+                if nums[mid]>target:
+                    e=mid-1
+                elif nums[mid]<target:
+                    s=mid+1
+                else:
+                    return mid
+            return -1
+        ans=pivot(nums)
+        e=len(nums)-1
+        a=-1
+        if nums[ans]<=target and target<=nums[e]:
+            a=binarysearch(nums,ans,e,target)
+        elif nums[0]<=target and target<=nums[ans-1]:
+            a=binarysearch(nums,0,ans-1,target)
+        return a
