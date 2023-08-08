@@ -1,0 +1,15 @@
+
+class Solution:
+    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        
+         def dfs(node, prev):
+             if node.next == None:
+                 node.next = prev
+                 return node
+             next = node.next
+             node.next = prev
+             # print(node)
+             return dfs(next, node)
+         if head == None:
+             return None
+         return dfs(head, None)
